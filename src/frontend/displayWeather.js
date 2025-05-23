@@ -1,6 +1,11 @@
 import { weatherImage } from "./getWeatherImage";
+import { hideLoading } from "./displayLoading";
 
 export function displayWeatherInfo(data) {
+    const weatherInfo = document.querySelector('#weather-info');
+    weatherInfo.innerHTML = '';
+    
+    hideLoading();
     const description = data.description;
     const conditions = data.currentConditions.conditions;
     const temp = data.currentConditions.temp;
@@ -8,7 +13,7 @@ export function displayWeatherInfo(data) {
     const feelsLike = data.currentConditions.feelslike;
     const uvIndex = data.currentConditions.uvindex;
 
-    const weatherInfo = document.querySelector('#weather-info');
+    
 
     const currentWeather = document.createElement('h3');
     currentWeather.id = 'current-weather';
@@ -44,6 +49,6 @@ export function displayWeatherInfo(data) {
     weatherImage(conditions);
 
 
-    console.log(`Current weather: ${conditions} \nTemperature (F): ${temp} \nHumidity: ${humidity} \nFeels Like (F): ${feelsLike} \nUV Index: ${uvIndex} \n${description}`);
+    console.log(data);
 
 };
